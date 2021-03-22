@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+body{
+  background-color: rgba(0, 0, 0, 0.596);
+  color: white;
+}
+
+.black{
+  color: black;
+}
+.underline{
+  text-decoration: underline;
+}
+.bold{
+  font-weight: bold;
+}
