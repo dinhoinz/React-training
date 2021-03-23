@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium'
+import styled from 'styled-components'
 import Person from './Person/Person'
 
+
+const StyledButton = styled.button`
+background-color: ${props => props.alt ? 'red': 'green'};
+color: black;
+font: inherit;
+border: 1px solid blue;
+padding: 8px;
+cursor: pointer;
+
+&:hover {
+  background-color:  ${props => props.alt ? 'salmon': 'lightgreen'};
+  color: black;
+}
+`;
 class App extends Component {
   state = {
     persons: [
@@ -45,18 +59,18 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: "white",
-      color: "black",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
-    };
+    // const style = {
+    //   backgroundColor: "white",
+    //   color: "black",
+    //   font: "inherit",
+    //   border: "1px solid blue", NOW I'M USING STYLED COMPONENTS
+    //   padding: "8px",
+    //   cursor: "pointer",
+    //   ":hover": {
+    //     backgroundColor: "lightgreen",
+    //     color: "black"
+    //   }
+    // };
 
     let persons = null;
 
@@ -74,12 +88,12 @@ class App extends Component {
         })}
         </div>
       );
-      style.backgroundColor = "red";
-      style.color = "white";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black"
-      }
+      // style.backgroundColor = "red";
+      // style.color = "white";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon", IMPORT RADIUM TO USE THIS
+      //   color: "black"
+      // }
     }
     
     const classes = []
@@ -95,18 +109,14 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(" ")}>There {this.state.persons.length <= 1 ? "is" : "are"} {this.state.persons.length == 0? "no" : this.state.persons.length} {this.state.persons.length == 1 ? "person" : "persons"} left</p>
-        <button
-        style={style} 
-        onClick={this.togglePersonsHandler}>Switch Name</button>
+        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Switch Name</StyledButton>
         {persons}
       </div> 
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
