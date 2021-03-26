@@ -31,6 +31,7 @@ body{
 
 .App button.Red{
   background-color: red;
+  color:white;
 }
 
 .App button.Red:hover{

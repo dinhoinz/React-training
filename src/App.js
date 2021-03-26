@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Person from './Person/Person'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
   state = {
@@ -52,13 +53,13 @@ class App extends Component {
       persons = (
         <div>
         {this.state.persons.map((person, index) => {
-          return <Person 
+          return <ErrorBoundary key={person.id}>
+          <Person 
           click={() => this.deletePersonHandler(index)}
           name={person.name} 
           age={person.age}
-          key={person.id}
-          changed={(event) => this.namechangedHandler(event, person.id)}
-          />
+          changed={(event) => this.namechangedHandler(event, person.id)}/>
+          </ErrorBoundary>
         })}
         </div>
       );
@@ -81,7 +82,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(" ")}>There {this.state.persons.length <= 1 ? "is" : "are"} {this.state.persons.length == 0? "no" : this.state.persons.length} {this.state.persons.length == 1 ? "person" : "persons"} left</p>
+        <p className={assignedClasses.join(" ")}>There {this.state.persons.length <= 1 ? "is" : "are"} {this.state.persons.length === 0? "no" : this.state.persons.length} {this.state.persons.length === 1 ? "person" : "persons"} left</p>
         <button className={btnClass} alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
       </div> 
