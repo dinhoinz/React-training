@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -44,20 +44,9 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: "white",
-    //   color: "black",
-    //   font: "inherit",
-    //   border: "1px solid blue", NOW I'M USING STYLED COMPONENTS
-    //   padding: "8px",
-    //   cursor: "pointer",
-    //   ":hover": {
-    //     backgroundColor: "lightgreen",
-    //     color: "black"
-    //   }
-    // };
 
     let persons = null;
+    let btnClass = [classes.Button];
 
     if(this.state.showPersons){
       persons = (
@@ -73,31 +62,27 @@ class App extends Component {
         })}
         </div>
       );
-      // style.backgroundColor = "red";
-      // style.color = "white";
-      // style[":hover"] = {
-      //   backgroundColor: "salmon", IMPORT RADIUM TO USE THIS
-      //   color: "black"
-      // }
+
+      btnClass = classes.Red;
     }
     
-    const classes = []
+    const assignedClasses = []
 
     if(this.state.persons.length <= 2){
-      classes.push("black"); 
+      assignedClasses.push(classes.black); 
     }
     if(this.state.persons.length <= 1){
-      classes.push("bold"); 
+      assignedClasses.push(classes.bold); 
     }
     if(this.state.persons.length < 1){
-      classes.push("underline"); 
+      assignedClasses.push(classes.underline); 
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(" ")}>There {this.state.persons.length <= 1 ? "is" : "are"} {this.state.persons.length == 0? "no" : this.state.persons.length} {this.state.persons.length == 1 ? "person" : "persons"} left</p>
-        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Switch Name</StyledButton>
+        <p className={assignedClasses.join(" ")}>There {this.state.persons.length <= 1 ? "is" : "are"} {this.state.persons.length == 0? "no" : this.state.persons.length} {this.state.persons.length == 1 ? "person" : "persons"} left</p>
+        <button className={btnClass} alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
       </div> 
     );
