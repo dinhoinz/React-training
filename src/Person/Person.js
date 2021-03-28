@@ -3,8 +3,7 @@ import classes from './Person.css'
 
 const person = (props) => {
 
-    const rnd = Math.random();
-    console.log("🚀 ~ file: Person.js ~ line 7 ~ person ~ rnd", rnd)
+    // const rnd = Math.random();
     // if( rnd > 0.7 ){
     //     throw new Error( 'Something went wrong' );
     // }
