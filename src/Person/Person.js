@@ -5,9 +5,9 @@ const person = (props) => {
 
     const rnd = Math.random();
     console.log("🚀 ~ file: Person.js ~ line 7 ~ person ~ rnd", rnd)
-    if( rnd > 0.7 ){
-        throw new Error( 'Something went wrong' );
-    }
+    // if( rnd > 0.7 ){
+    //     throw new Error( 'Something went wrong' );
+    // }
 
     return (
         <div className={classes.Person}>
